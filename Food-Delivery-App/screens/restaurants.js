@@ -5,7 +5,8 @@ import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplet
 import { Dimensions, Text, View, TouchableOpacity, StyleSheet, SafeAreaView } from 'react-native';
 import Categories from '../components/categories';
 import RestaurantItems from '../components/restaurantItems';
-// import { Divider } from 'react-native-elements';
+import BottomTabs from '../components/bottomtabs';
+import { Divider } from 'react-native-elements';
 
 const colorScheme = {
     brown: '#C6742E', blue: '#6DC8E8', red: '#D4263F', orange: '#F18933',
@@ -72,10 +73,11 @@ export default function Restaurants({ navigation, route }) {
                 />
             </View>
 
-            {/* Usama's Part */}
             <View style={styles.categories}>
                 <Categories />
                 <RestaurantItems navigation={navigation} />
+                <Divider width={1} />
+                <BottomTabs />
             </View>
 
             {/* Bottom Tabs */}
@@ -94,8 +96,9 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#eee',
-        // alignItems: 'center',
-        // justifyContent: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+        // marginTop: 31,
     },
     headerbuttons: {
         padding: 15,

@@ -4,13 +4,15 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Divider } from 'react-native-elements';
 // import LottieView from 'lottie-react-native';
 
-
 export default function Checkout() {
     return (
         <View style={styles.container}>
-            {/* <LottieView source={require('../assets/animations/782-check-mark-success.json')} /> */}
+            {/* <LottieView
+                source={require('../assets/animations/782-check-mark-success.json')}
+                style={{ width: 80, height: 80, color: 'green' }}
+            /> */}
             <Ionicons name="checkmark-done-outline" size={75} color="green" />
-            <Text>Your order at FIG Restaurant has been placed for 1199 Rs.</Text>
+            <Text>Your order at Tanduri Restaurant Islamabad has been placed for 1199 Rs.</Text>
             <View style={{ marginTop: 30 }}>
                 <View style={styles.menuItemStyle}>
                     <View style={{ width: 240, justifyContent: "space-evenly" }}>

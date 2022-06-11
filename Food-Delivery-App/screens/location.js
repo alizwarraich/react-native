@@ -15,6 +15,7 @@ export default function Location({ navigation }) {
     const [location, setLocation] = useState('');
     return (
         <SafeAreaView style={styles.container}>
+            <ScrollView />
             <ImageBackground source={require('../assets/images/pn1.png')} resizeMode="cover">
                 <View style={styles.search}>
                     <GooglePlacesAutocomplete
@@ -66,7 +67,6 @@ export default function Location({ navigation }) {
                     </TouchableOpacity>
                 </View>
             </ImageBackground>
-            <ScrollView />
         </SafeAreaView>
     );
 };
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        // marginTop: 10,
+        // marginTop: 31,
         // paddingTop: 10,
     },
     button: {
@@ -98,7 +98,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         backgroundColor: '#fff',
         width: windowWidth,
-        paddingTop: 21,
+        paddingTop: 31,
+        paddingBottom: 11,
     },
     searchoption: {
         marginHorizontal: 10,

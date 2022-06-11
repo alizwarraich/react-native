@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Modal, Text, View, ScrollView, Image, TouchableOpacity, Pressable } from 'react-native';
+import { StyleSheet, Modal, Text, ImageBackground, SafeAreaView, View, ScrollView, Image, TouchableOpacity, Pressable } from 'react-native';
 import { Divider } from 'react-native-elements';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import { useState } from 'react';
@@ -7,8 +7,8 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const restaurentInfo = {
     name: "Tanduri Restaurent Islamabad",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQl6P6lcDb8SQHwCVE9PIhp2JthnwfCe48fw&usqp=CAU",
-    price: "Rs",
+    image: "http://cdn.cnn.com/cnnnext/dam/assets/191223114547-mott-32-marina-bay-sands-32-dining-room-1.jpg",
+    price: "₨",
     reviews: '1500',
     rating: 4.5,
     categories: [{ title: 'Tanduri' }, { title: 'Restaurent Islamabad' }, { title: 'Wah Cantt' }],
@@ -27,7 +27,7 @@ const description = `${formattedCategories} ${price ? '-' + price : ""} - ${rati
 
 const foods = [
     {
-        title: " Chicken Biryani",
+        title: "Chicken Biryani",
         description: "Delicious Biryani with grilled chicken",
         price: "Rs.299.00",
         image: "https://img-global.cpcdn.com/recipes/2ca17025ebce0dba/400x400cq70/photo.jpg",
@@ -39,14 +39,14 @@ const foods = [
         image: "https://lh3.googleusercontent.com/yEW3XUlxq3JMUVNDncZgf33-QYX7pemBUQsv0jxCwPql7UZJj4oooksJ0zm7KiCNjbF9Ewp8SIGITK1kknr8=w1920-h1920-c-rj-v1-e365",
     },
     {
-        title: " Lasagnia",
+        title: "Lasagnia",
         description: "Tasty lasagnia with butter lettuce and  spicy tomato sauce",
         price: "Rs.699.00",
         image: "https://demo.ziprecipes.net/wp-content/uploads/2020/07/Most-Amazing-Lasagna-2-e1574792735811.jpg",
 
     },
     {
-        title: " Grilled Chicken",
+        title: "Grilled Chicken",
         description: "Hot grilled chicken , the taste you love",
         price: "Rs.699.00",
         image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2ABTK4Lr3sV3YWzl5dBWID7gJWKqq-DtFww&usqp=CAU",
@@ -58,13 +58,13 @@ const foods = [
         image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStDSqC7kxWeh9e40CuO8g-Z1WKGUYdo4ys5A&usqp=CAU",
     },
     {
-        title: " Zinger Burger",
+        title: "Zinger Burger",
         description: "with fries and 300ml drink",
         price: "Rs.499.00",
         image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGbDqtKe_taaO8kBB_vSoQzjm8rRtBzfFLPQ&usqp=CAU",
     },
     {
-        title: " Beef Burger",
+        title: "Beef Burger",
         description: "with fries",
         price: "Rs.599.00",
         image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKY3lNkmnkTzW802TAHPHmCRnTTWEKnEnAuA&usqp=CAU",
@@ -82,7 +82,7 @@ const foods = [
         image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvHD-Hr3e5KYxUTyvGNDVokqt99VXop38Ipw&usqp=CAU",
     },
     {
-        title: " Grilled Chicken",
+        title: "Grilled Chicken",
         description: "Hot grilled chicken , the taste you love",
         price: "Rs.699.00",
         image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2ABTK4Lr3sV3YWzl5dBWID7gJWKqq-DtFww&usqp=CAU",
@@ -174,10 +174,10 @@ export default function ItemMenu({ route, navigation }) {
         navigation.navigate("Checkout");
     }
     return (
-        <View>
+        <SafeAreaView style={styles.container}>
             <ScrollView>
                 <View>
-                    {<RestaurentImage image={image} />}
+                    {<RestaurentImage image={image} navigation={navigation} />}
                     {<RestaurentName name={name} />}
                     {<RestaurentDescription description={description} />}
                     <Divider width={1} style={{ marginVertical: 23 }} />
@@ -191,11 +191,11 @@ export default function ItemMenu({ route, navigation }) {
                                 fillColor="#D4263F"
                             />
                             {<FoodInfo food={food} />}
-                            {< FoodImage food={food} />}
+                            {<FoodImage food={food} />}
 
                             <StatusBar style="auto" />
                         </View>
-                        <Divider width={0.5} style={{ marginVertical: 23 }} />
+                        <Divider width={1} style={{ marginVertical: 23 }} />
 
                     </View>
                 ))}
@@ -224,7 +224,7 @@ export default function ItemMenu({ route, navigation }) {
                 <View style={styles.modalContainer}>
                     <View style={styles.modalSubcontainer}>
                         <View style={{ width: '100%', flexDirection: 'row', justifyContent: 'center' }}>
-                            <Text style={{ fontSize: 18, fontWeight: '700', marginLeft: 120, marginRight: 100 }}>FIG Restaurant</Text>
+                            <Text style={{ fontSize: 18, fontWeight: '700', marginLeft: 120, marginRight: 100 }}>Tanduri Restaurant</Text>
                             <View>
                                 <Pressable onPress={() => setModal(false)}>
                                     <Ionicons name="close-circle-outline" size={24} />
@@ -251,11 +251,16 @@ export default function ItemMenu({ route, navigation }) {
                     </View>
                 </View>
             </Modal>
-        </View >
+        </SafeAreaView >
     );
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        marginTop: 31,
+        // backgroundColor: '#fff',
+    },
     menuItemStyle: {
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -266,13 +271,17 @@ const styles = StyleSheet.create({
     titleStyle: {
         fontSize: 19,
         fontWeight: "600",
+        justifyContent: 'space-evenly',
+        marginLeft: -5,
+        paddingRight: 9,
+
     },
     modalContainer: {
         width: '100%',
         flex: 1,
         justifyContent: 'flex-end',
         alignItems: 'center',
-        marginTop: 56,
+        // marginTop: 56,
         backgroundColor: "rgba(0,0,0,0.6)",
         // marginHorizontal: 20,
     },
@@ -282,6 +291,8 @@ const styles = StyleSheet.create({
         width: '100%',
         alignItems: 'center',
         paddingBottom: 150,
+        borderTopRightRadius: 25,
+        borderTopLeftRadius: 25,
     },
     checkoutButton: {
         backgroundColor: '#D4263F',
@@ -304,21 +315,28 @@ const styles = StyleSheet.create({
         paddingTop: 20,
         paddingBottom: 40,
     },
+    backButton: {
+        backgroundColor: 'white',
+        width: 33,
+        borderRadius: 20,
+        marginTop: 10,
+        marginLeft: 10,
+    },
 })
 
 
 
 
 const FoodInfo = (props) => (
-    <View style={{ width: 240, justifyContent: "space-evenly" }}>
+    <View style={{ width: 180, justifyContent: "space-evenly" }}>
         <Text style={styles.titleStyle}>{props.food.title}</Text>
-        <Text>{props.food.description}</Text>
-        <Text>{props.food.price}</Text>
+        <Text style={{ justifyContent: 'space-evenly', marginLeft: -5, paddingRight: 18, }}>{props.food.description}</Text>
+        <Text style={{ marginLeft: -5 }}>{props.food.price}</Text>
     </View>
 );
 
 const FoodImage = (props) => (
-    <View style={{ marginLeft: -10 }}>
+    <View style={{ marginLeft: -30 }}>
         <Image
             source={{ uri: props.food.image }}
             style={{ width: 100, height: 100, borderRadius: 8 }}
@@ -326,7 +344,11 @@ const FoodImage = (props) => (
     </View>
 );
 const RestaurentImage = (props) => (
-    <Image source={{ uri: props.image }} style={{ width: '100%', height: 180 }} />
+    <ImageBackground source={{ uri: props.image }} style={{ width: '100%', height: 180 }}>
+        <Pressable style={styles.backButton} onPress={() => props.navigation.navigate('RestaurantsHeader')}>
+            <Ionicons name="arrow-back-outline" size={32} color="#333" />
+        </Pressable>
+    </ImageBackground >
 );
 const RestaurentName = (props) => (
 
@@ -345,5 +367,3 @@ const RestaurentDescription = (props) => (
         fontSize: 15.5,
     }}>{props.description}</Text>
 );
-
-
