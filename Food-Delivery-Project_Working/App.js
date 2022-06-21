@@ -2,12 +2,13 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Startup from './screens/startup';
+import Restaurants from './screens/restaurants';
 import Login from './screens/login_signup';
 import ItemMenu from './screens/itemmenu';
-import Restaurants from './screens/restaurants';
 import RestaurantItems from './components/restaurantItems';
 import Checkout from './screens/checkout';
 import Location from './screens/location';
+// import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 
 const App = () => {
   const Stack = createNativeStackNavigator();
@@ -26,6 +27,12 @@ const App = () => {
         <Stack.Screen name="Checkout" component={Checkout} />
       </Stack.Navigator>
     </NavigationContainer>
+  );
+}
+export function Tab() {
+
+  return (
+    <></>
   );
 }
 

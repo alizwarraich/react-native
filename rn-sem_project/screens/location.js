@@ -11,7 +11,7 @@ const colorScheme = {
 };
 const windowWidth = Dimensions.get('window').width;
 
-export default function Location({ navigation }) {
+export default function Location({ navigation, route }) {
     const [location, setLocation] = useState('');
     return (
         <SafeAreaView style={styles.container}>
@@ -22,7 +22,8 @@ export default function Location({ navigation }) {
                         query={{ key: 'AIzaSyCSWIgeYITb8iY4QS2dchDDO5oB3D4jeHE' }}
                         placeholder='Search'
                         onPress={(data) => {
-                            setLocation(data.description)
+                            const city = data.description.split(',')[0];
+                            setLocation(city)
                         }}
                         styles={{
                             textInput: {
@@ -62,7 +63,7 @@ export default function Location({ navigation }) {
             </View> */}
 
                 <View style={{ flex: 1, justifyContent: 'center', alignSelf: 'center' }}>
-                    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('RestaurantsHeader', { location: { location } })}>
+                    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('RestaurantsHeader', { location: location })}>
                         <Text style={styles.buttonText}>Confirm Location</Text>
                     </TouchableOpacity>
                 </View>

@@ -6,7 +6,7 @@ import { Dimensions, Text, View, TouchableOpacity, StyleSheet, SafeAreaView } fr
 import Categories from '../components/categories';
 import RestaurantItems from '../components/restaurantItems';
 import BottomTabs from '../components/bottomtabs';
-import { Divider } from 'react-native-elements';
+import { Divider } from 'react-native-paper';
 
 const colorScheme = {
     brown: '#C6742E', blue: '#6DC8E8', red: '#D4263F', orange: '#F18933',
@@ -76,8 +76,8 @@ export default function Restaurants({ navigation, route }) {
             <View style={styles.categories}>
                 <Categories />
                 <RestaurantItems navigation={navigation} />
-                <Divider width={1} />
-                <BottomTabs />
+                <Divider />
+                {/* <BottomTabs /> */}
             </View>
 
             {/* Bottom Tabs */}

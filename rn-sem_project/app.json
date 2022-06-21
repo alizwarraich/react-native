@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Food-Delivery-App",
-    "slug": "Food-Delivery-App",
+    "name": "rn-sem_project",
+    "slug": "rn-sem_project",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

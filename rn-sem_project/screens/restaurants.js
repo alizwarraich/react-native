@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
-import { Dimensions, Text, View, TouchableOpacity, StyleSheet, SafeAreaView } from 'react-native';
+import { Dimensions, Text, View, ScrollView, TouchableOpacity, StyleSheet, SafeAreaView } from 'react-native';
 import Categories from '../components/categories';
 import RestaurantItems from '../components/restaurantItems';
-import BottomTabs from '../components/bottomtabs';
-import { Divider } from 'react-native-elements';
+import { Divider } from 'react-native-paper';
 
 const colorScheme = {
     brown: '#C6742E', blue: '#6DC8E8', red: '#D4263F', orange: '#F18933',
@@ -16,8 +15,9 @@ const colorScheme = {
 
 const windowWidth = Dimensions.get('window').width;
 
-export default function Restaurants({ navigation, route }) {
+export default function Restaurants({ navigation }) {
     const [activeButton, activateButton] = useState(0);
+    const [city, setCity] = useState("Islamabad");
     function checkActiveButton(j) {
         if (activeButton == j) {
             return true;
@@ -26,7 +26,7 @@ export default function Restaurants({ navigation, route }) {
     }
     return (
         <SafeAreaView style={styles.container}>
-            {/* Delivery and Pcikup Buttons */}
+            {/* Delivery and Pickup Buttons */}
             <View style={styles.headerbuttons}>
                 <TouchableOpacity onPress={() => activateButton(0)} style={checkActiveButton(0) ? styles.activebutton : styles.button}><Text style={checkActiveButton(0) ? styles.activebuttontext : styles.buttontext}>Delivery</Text></TouchableOpacity>
                 <TouchableOpacity onPress={() => activateButton(1)} style={checkActiveButton(1) ? styles.activebutton : styles.button}><Text style={checkActiveButton(1) ? styles.activebuttontext : styles.buttontext}>Pickup</Text></TouchableOpacity>
@@ -37,8 +37,10 @@ export default function Restaurants({ navigation, route }) {
                 <GooglePlacesAutocomplete
                     query={{ key: 'AIzaSyCSWIgeYITb8iY4QS2dchDDO5oB3D4jeHE' }}
                     placeholder='Search'
-                    onPress={(data) => {
-                        data.description = route.params.location
+                    onPress={(data, details = null) => {
+                        // console.log(data.description);
+                        const city = data.description.split(',')[0];
+                        setCity(city);
                     }}
                     styles={{
                         textInput: {
@@ -75,19 +77,10 @@ export default function Restaurants({ navigation, route }) {
 
             <View style={styles.categories}>
                 <Categories />
-                <RestaurantItems navigation={navigation} />
-                <Divider width={1} />
-                <BottomTabs />
+                <RestaurantItems activeButton={activeButton} navigation={navigation} filter={city} />
+                <Divider />
             </View>
 
-            {/* Bottom Tabs */}
-            {/* <View style={styles.bottomtabs}>
-                <Icon name="home" text="Home" />
-                <Icon name="search" text="Browse" />
-                <Icon name="shopping-bag" text="Grocery" />
-                <Icon name="receipt" text="Orders" />
-                <Icon name="user" text="Account" />
-            </View> */}
         </SafeAreaView >
     );
 }
@@ -98,7 +91,9 @@ const styles = StyleSheet.create({
         backgroundColor: '#eee',
         alignItems: 'center',
         justifyContent: 'center',
+        // marginTop: -10,
         marginTop: 31,
+        // marginTop: windowHeight - windowHeight,
     },
     headerbuttons: {
         padding: 15,
